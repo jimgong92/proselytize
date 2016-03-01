@@ -7,16 +7,15 @@ import App from './containers/App';
 
 const store = configureStore();
 
-// Enable hot reloading of styles
-if(module.hot) {
-  module.hot.accept('../styles/less/main.less', function() {
-    require('../styles/less/main.less');
-  });
-}
-
 render(
   <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')
 );
+
+import Crusader from './entities/classes/Crusader';
+
+const Bob = new Crusader({armor: 'hello'});
+
+console.log(Bob);
