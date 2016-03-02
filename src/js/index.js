@@ -13,9 +13,3 @@ render(
   </Provider>,
   document.getElementById('root')
 );
-
-import Crusader from './entities/classes/Crusader';
-
-const Bob = new Crusader({armor: 'hello'});
-
-console.log(Bob);
