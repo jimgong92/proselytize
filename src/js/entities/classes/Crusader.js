@@ -1,15 +1,13 @@
 import Character from '../Character';
 
 class Crusader extends Character {
-  constructor(config = Crusader.defaultConfig) {
+  constructor(config) {
     super(config);
+    this.MAX_MOVES = this.movesRemaining = 2;
+    this.MAX_FAITH = this.faithRemaining = 20;
+    this.BASE_DAMAGE = 10;
+    this.BASE_DEFENSE = 2;
   }
 }
-
-Crusader.defaultConfig = Character.defaultConfig;
-Crusader.defaultConfig.MAX_MOVES = 2;
-Crusader.defaultConfig.BASE_DAMAGE = 10;
-Crusader.defaultConfig.BASE_DEFENSE = 2;
-Crusader.defaultConfig.MAX_FAITH = 20;
 
 export default Crusader;

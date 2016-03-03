@@ -3,8 +3,10 @@ import Crusader from '../entities/classes/Crusader';
 import Missionary from '../entities/classes/Missionary';
 import Preacher from '../entities/classes/Preacher';
 import Zealot from '../entities/classes/Zealot';
+
+const Bob = new Cleric({name: 'Bob'});
 const playerChars = [
-  new Cleric(),
+  Bob,
   new Crusader(),
   new Missionary(),
   new Preacher(),
@@ -26,6 +28,11 @@ const b1 = new Battle({
 });
 console.log(b1);
 
+Bob.move(9, 1);
+Bob.move(8, 1);
+
+
+console.log(b1);
 export default function placeholder(state = {}, action) {
   return state;
 };

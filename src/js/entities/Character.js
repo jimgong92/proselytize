@@ -1,38 +1,30 @@
 class Character {
-  constructor(config = Character.defaultConfig) {
-    const {
-      MAX_MOVES, BASE_DAMAGE, BASE_DEFENSE, MAX_FAITH,
-      name, faithType, location, weapon, armor, board
-    } = Character.defaultConfig;
-    this.MAX_MOVES = config.MAX_MOVES || MAX_MOVES;
-    this.BASE_DAMAGE = config.BASE_DAMAGE || BASE_DAMAGE;
-    this.BASE_DEFENSE = config.BASE_DEFENSE || BASE_DEFENSE;
-    this.MAX_FAITH = config.MAX_FAITH || MAX_FAITH;
-    this.movesRemaining = this.MAX_MOVES;
-    this.faithRemaining = this.MAX_FAITH;
-    this.name = config.name || name;
-    this.faithType = config.faithType || faithType;
-    this.location = config.location || location;
-    this.weapon = config.weapon || weapon;
-    this.armor = config.armor || armor;
-    this.board = config.board || board;
+  constructor(config) {
+    this.MAX_MOVES = this.movesRemaining = 1;
+    this.MAX_FAITH = this.faithRemaining = 1;
+    this.BASE_DAMAGE = 1;
+    this.BASE_DEFENSE = 0;
+    this.name = config ? config.name : 'Robert Paulson';
+    this.faithType = config ? config.faithType : null;
+    this.location = config ? config.location : null;
+    this.weapon = config ? config.weapon : null;
+    this.armor = config ? config.armor : null;
+    this.board = config ? config.board : null;
   }
-  move() {}
+  move(r, c) {
+    if (!this.movesRemaining) return;
+
+    let { row, col } = this.location;
+    const xDiff = Math.abs(c - col);
+    const yDiff = Math.abs(r - row);
+    if (xDiff < 2 && yDiff < 2 && (xDiff + yDiff) > 0) {
+      this.movesRemaining--;
+      this.location = { row: r, col: c };
+      this.board[r][c] = this;
+    }
+  }
   attack() {}
   special() {}
 }
-
-Character.defaultConfig = {
-  MAX_MOVES: 1,
-  BASE_DAMAGE: 1,
-  BASE_DEFENSE: 0,
-  MAX_FAITH: 1,
-  name: 'Robert Paulson',
-  faithType: null,
-  location: { row: 0, column: 0 },
-  weapon: null,
-  armor: null,
-  board: null
-};
 
 export default Character;

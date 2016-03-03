@@ -1,15 +1,13 @@
 import Character from '../Character';
 
 class Missionary extends Character {
-  constructor(config = Missionary.defaultConfig) {
+  constructor(config) {
     super(config);
+    this.MAX_MOVES = this.movesRemaining = 4;
+    this.MAX_FAITH = this.faithRemaining = 20;
+    this.BASE_DAMAGE = 3;
+    this.BASE_DEFENSE = 0;
   }
 }
-
-Missionary.defaultConfig = Character.defaultConfig;
-Missionary.defaultConfig.MAX_MOVES = 4;
-Missionary.defaultConfig.BASE_DAMAGE = 3;
-Missionary.defaultConfig.BASE_DEFENSE = 0;
-Missionary.defaultConfig.MAX_FAITH = 20;
 
 export default Missionary;

@@ -1,22 +1,29 @@
 class Battle {
-  constructor(config = Battle.defaultConfig) {
-    const { BOARD_SIZE, playerChars, invaderChars } = Battle.defaultConfig;
-    this.BOARD_SIZE = config.BOARD_SIZE || BOARD_SIZE;
-    this.playerChars = config.playerChars || playerChars;
-    this.invaderChars = config.invaderChars || invaderChars;
+  constructor(config) {
+    const { BOARD_SIZE, playerChars, invaderChars } = config;
+    this.BOARD_SIZE = BOARD_SIZE || 11;
+    this.playerChars = playerChars || [];
+    this.invaderChars = invaderChars || [];
     this.board = this.initBoard();
   }
   initBoard() {
     const board = createBoard(this.BOARD_SIZE);
     for (let i = 0; i < this.invaderChars.length; i++) {
-      board[0][(i * 2) + 1] = this.invaderChars[i];
+      const invader = this.invaderChars[i];
+      const {row, col} = { row: 0, col: (i * 2) + 1 };
+      invader.board = board;
+      invader.location = { row, col }
+      board[row][col] = invader;
     }
     for (let i = 0; i < this.playerChars.length; i++) {
-      board[this.BOARD_SIZE - 1][(i * 2) + 1] = this.playerChars[i];
+      const playerChar = this.playerChars[i];
+      const {row, col} = { row: this.BOARD_SIZE - 1, col: (i * 2) + 1 };
+      playerChar.board = board;
+      playerChar.location = { row, col }
+      board[row][col] = playerChar;
     }
     return board;
   }
-
 }
 
 function createBoard(size) {
@@ -28,11 +35,5 @@ function createBoard(size) {
     }
   return board;
 }
-
-Battle.defaultConfig = {
-  BOARD_SIZE: 11,
-  playerChars: [],
-  invaderChars: []
-};
 
 export default Battle;

@@ -1,15 +1,13 @@
 import Character from '../Character';
 
 class Cleric extends Character {
-  constructor(config = Cleric.defaultConfig) {
+  constructor(config) {
     super(config);
+    this.MAX_MOVES = this.movesRemaining = 2;
+    this.MAX_FAITH = this.faithRemaining = 20;
+    this.BASE_DAMAGE = 5;
+    this.BASE_DEFENSE = 2;
   }
 }
-
-Cleric.defaultConfig = Character.defaultConfig;
-Cleric.defaultConfig.MAX_MOVES = 2;
-Cleric.defaultConfig.BASE_DAMAGE = 5;
-Cleric.defaultConfig.BASE_DEFENSE = 2;
-Cleric.defaultConfig.MAX_FAITH = 20;
 
 export default Cleric;
