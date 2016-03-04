@@ -17,10 +17,15 @@ class Character {
     let { row, col } = this.location;
     const xDiff = Math.abs(c - col);
     const yDiff = Math.abs(r - row);
+    // If movement permissable
     if (xDiff < 2 && yDiff < 2 && (xDiff + yDiff) > 0) {
-      this.movesRemaining--;
-      this.location = { row: r, col: c };
-      this.board[r][c] = this;
+      // Verify impending square is empty
+      if (!this.board[r][c]) {
+        this.movesRemaining--;
+        this.board[row][col] = null;
+        this.location = { row: r, col: c };
+        this.board[r][c] = this;
+      }
     }
   }
   attack() {}

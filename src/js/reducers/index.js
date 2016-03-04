@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import placeholder from './placeholder';
+import battle from './battle';
 
 const rootReducer = combineReducers({
-  placeholder
+  battle
 });
 
 export default rootReducer;
